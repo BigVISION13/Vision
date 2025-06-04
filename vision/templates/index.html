@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Vision - Workflow Parser</title>
+</head>
+<body>
+  <h1>Vision Workflow Parser</h1>
+  <form method="post">
+    <textarea name="prompt" rows="4" cols="50" placeholder="Enter your workflow prompt here..."></textarea><br>
+    <button type="submit">Parse</button>
+  </form>
+
+  {% if workflow %}
+    <h2>Parsed Workflow</h2>
+    <pre>{{ workflow | tojson(indent=2) }}</pre>
+  {% endif %}
+</body>
+</html>
