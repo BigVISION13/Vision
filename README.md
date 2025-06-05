@@ -28,7 +28,9 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Then open `http://localhost:5000` in your browser.
+Then open `http://localhost:5000/` in your browser. The Flask app serves its
+UI from the root path using templates in `vision/templates`, so navigating
+directly to `/` avoids 404 errors.
 
 The page provides three forms: one to parse workflow prompts, one to ask the
 Sales AI for quick tips, and another to generate an automation flow from a

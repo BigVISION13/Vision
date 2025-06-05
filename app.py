@@ -3,7 +3,8 @@ from vision.workflow import parse_workflow
 from vision.sales_ai import get_sales_advice
 from vision.automation import generate_automation
 
-app = Flask(__name__)
+# Tell Flask to look for templates inside the vision/templates directory
+app = Flask(__name__, template_folder='vision/templates')
 
 
 @app.route('/', methods=['GET', 'POST'])
