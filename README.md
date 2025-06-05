@@ -10,6 +10,10 @@ The web UI also includes a small "Sales AI" helper. You can ask questions about
 sales tactics and receive brief suggestions based on simple heuristics defined
 in `vision/sales_ai.py`.
 
+You can also generate basic automations from plain language descriptions. The
+`vision/automation.py` module converts a prompt into a simple flow of actions
+similar to tools like n8n.
+
 ## Setup
 
 1. Install dependencies:
@@ -26,5 +30,6 @@ python app.py
 
 Then open `http://localhost:5000` in your browser.
 
-The page provides two forms: one to parse workflow prompts and another to ask
-the Sales AI for quick tips.
+The page provides three forms: one to parse workflow prompts, one to ask the
+Sales AI for quick tips, and another to generate an automation flow from a
+plain language description.

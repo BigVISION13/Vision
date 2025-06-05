@@ -17,6 +17,12 @@
     <button type="submit">Ask</button>
   </form>
 
+  <h1>Generate Automation</h1>
+  <form method="post">
+    <textarea name="automation_prompt" rows="4" cols="50" placeholder="Describe an automation to build..."></textarea><br>
+    <button type="submit">Generate</button>
+  </form>
+
   {% if workflow %}
     <h2>Parsed Workflow</h2>
     <pre>{{ workflow | tojson(indent=2) }}</pre>
@@ -25,6 +31,11 @@
   {% if sales_answer %}
     <h2>Sales AI Advice</h2>
     <p>{{ sales_answer }}</p>
+  {% endif %}
+
+  {% if automation %}
+    <h2>Automation Flow</h2>
+    <pre>{{ automation | tojson(indent=2) }}</pre>
   {% endif %}
 </body>
 </html>
