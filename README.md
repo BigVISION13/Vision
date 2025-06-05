@@ -40,3 +40,16 @@ style.
 You can also run the lightweight API server via `vision_api.py`. It exposes a
 `POST /generate-response` endpoint accepting JSON with `context` and `style` and
 returns the generated message.
+
+## React component example
+
+A small React component is provided under `frontend/SalesResponseGenerator.jsx`.
+It demonstrates how to call the `/generate-response` API endpoint from a
+React-based UI. You can import this component into your own React application:
+
+```jsx
+import SalesResponseGenerator from './frontend/SalesResponseGenerator';
+```
+
+Make sure the Flask server is running locally so the component can post to
+`http://localhost:5000/generate-response`.
