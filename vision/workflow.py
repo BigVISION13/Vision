@@ -4,8 +4,9 @@ import json
 def parse_workflow(prompt: str) -> dict:
     """Parse a natural language prompt into a structured workflow.
 
-    The current implementation extracts LinkedIn connection requests,
-    waiting periods, email actions, and conditional follow-ups.
+    Updated to incorporate improvements from ``parse_workflow_improved``.
+    The parser currently extracts LinkedIn connection requests, waiting
+    periods, email actions, and conditional follow ups.
     """
     if not isinstance(prompt, str):
         prompt = str(prompt)
@@ -31,10 +32,15 @@ def parse_workflow(prompt: str) -> dict:
             days = int(text[start:end].strip())
             temp = text[end + 4:text.find("email", end)].replace("then send", "").strip()
             template = temp if temp else "custom"
+            # explicitly build the wait then email sequence
             workflow["sequence"].append({"action": "wait", "duration_days": days})
-            workflow["sequence"].append({"action": "send_email", "template": template.replace("a ", "").replace(" ", "_") + "_email"})
-        except Exception:
-            pass  # If the pattern is not matched, just skip
+            workflow["sequence"].append({
+                "action": "send_email",
+                "template": template.replace("a ", "").replace(" ", "_") + "_email",
+            })
+        except Exception as e:
+            # ignore patterns we fail to parse
+            pass
 
     # Find conditional email follow-up
     if "if no reply after" in text and "send" in text and "email" in text:
@@ -52,11 +58,14 @@ def parse_workflow(prompt: str) -> dict:
                 "condition": "no_reply",
                 "wait_days": days,
                 "true_branch": [
-                    {"action": "send_email", "template": template.replace(" ", "_") + "_email"}
+                    {
+                        "action": "send_email",
+                        "template": template.replace(" ", "_") + "_email",
+                    }
                 ],
                 "false_branch": []
             })
-        except Exception:
+        except Exception as e:
             pass
 
     return workflow

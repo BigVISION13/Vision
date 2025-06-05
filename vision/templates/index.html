@@ -23,6 +23,13 @@
     <button type="submit">Generate</button>
   </form>
 
+  <h1>Generate Styled Response</h1>
+  <form method="post" action="/generate-response">
+    <input type="text" name="context" placeholder="Context" />
+    <input type="text" name="style" placeholder="Style" />
+    <button type="submit">Generate Response</button>
+  </form>
+
   {% if workflow %}
     <h2>Parsed Workflow</h2>
     <pre>{{ workflow | tojson(indent=2) }}</pre>
@@ -36,6 +43,11 @@
   {% if automation %}
     <h2>Automation Flow</h2>
     <pre>{{ automation | tojson(indent=2) }}</pre>
+  {% endif %}
+
+  {% if generated_response %}
+    <h2>Generated Response</h2>
+    <p>{{ generated_response }}</p>
   {% endif %}
 </body>
 </html>

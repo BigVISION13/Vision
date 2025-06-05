@@ -32,6 +32,11 @@ Then open `http://localhost:5000/` in your browser. The Flask app serves its
 UI from the root path using templates in `vision/templates`, so navigating
 directly to `/` avoids 404 errors.
 
-The page provides three forms: one to parse workflow prompts, one to ask the
-Sales AI for quick tips, and another to generate an automation flow from a
-plain language description.
+The page now provides four forms: one to parse workflow prompts, one to ask the
+Sales AI for quick tips, another to generate an automation flow from a plain
+language description, and a form for generating a short response in a chosen
+style.
+
+You can also run the lightweight API server via `vision_api.py`. It exposes a
+`POST /generate-response` endpoint accepting JSON with `context` and `style` and
+returns the generated message.
