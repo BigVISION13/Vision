@@ -12,7 +12,9 @@ in `vision/sales_ai.py`.
 
 You can also generate basic automations from plain language descriptions. The
 `vision/automation.py` module converts a prompt into a simple flow of actions
-similar to tools like n8n.
+similar to tools like n8n. If an `OPENAI_API_KEY` environment variable is
+available, the automation generator will call the OpenAI API to produce a
+richer JSON sequence before falling back to the built-in parser.
 
 ## Setup
 
@@ -20,6 +22,13 @@ similar to tools like n8n.
 
 ```bash
 pip install -r requirements.txt
+```
+
+Set the ``OPENAI_API_KEY`` environment variable if you want to generate
+automations using OpenAI:
+
+```bash
+export OPENAI_API_KEY=your-key-here
 ```
 
 2. Run the development server:
