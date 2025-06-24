@@ -1,4 +1,9 @@
-from flask import Flask, request, jsonify
+try:
+    from flask import Flask, request, jsonify
+except ModuleNotFoundError:  # pragma: no cover - graceful fallback
+    print("Flask is not installed. Please install dependencies from requirements.txt to run the API server.")
+    import sys
+    sys.exit(0)
 from vision.response_generator import generate_response
 
 app = Flask(__name__)

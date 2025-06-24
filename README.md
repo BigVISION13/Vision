@@ -28,6 +28,9 @@ pip install -r requirements.txt
 python app.py
 ```
 
+If Flask is not installed, the script will simply print a message and exit. To
+use the web interface, make sure you install all dependencies first.
+
 Then open `http://localhost:5000/` in your browser. The Flask app serves its
 UI from the root path using templates in `vision/templates`, so navigating
 directly to `/` avoids 404 errors.

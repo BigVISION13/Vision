@@ -1,4 +1,9 @@
-from flask import Flask, render_template, request, jsonify
+try:
+    from flask import Flask, render_template, request, jsonify
+except ModuleNotFoundError:  # pragma: no cover - graceful fallback
+    print("Flask is not installed. Please install dependencies from requirements.txt to run the web server.")
+    import sys
+    sys.exit(0)
 from vision.workflow import parse_workflow
 from vision.sales_ai import get_sales_advice
 from vision.automation import generate_automation
