@@ -25,7 +25,7 @@ pip install -r requirements.txt
 ```
 
 Set the ``OPENAI_API_KEY`` environment variable if you want to generate
-automations using OpenAI:
+automations and responses using OpenAI:
 
 ```bash
 export OPENAI_API_KEY=your-key-here
@@ -53,7 +53,8 @@ You can also run the lightweight API server via `vision_api.py` or use the
 Flask app's JSON endpoints directly:
 
 * `POST /generate-response` &ndash; generate a short message in a specified
-  style.
+  style. When an ``OPENAI_API_KEY`` is set, the reply is produced by the
+  ChatGPT API; otherwise a placeholder string is returned.
 * `POST /parse-workflow` &ndash; parse a natural language prompt into a
   structured workflow.
 * `POST /generate-automation` &ndash; build an automation flow from a
@@ -73,3 +74,5 @@ import SalesResponseGenerator from './frontend/SalesResponseGenerator';
 
 Make sure the Flask server is running locally so the component can post to
 `http://localhost:5000/generate-response`.
+If you have configured ``OPENAI_API_KEY`` on the server, responses will come
+from ChatGPT rather than the placeholder implementation.
