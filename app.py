@@ -38,5 +38,23 @@ def generate_response_route():
     return render_template('index.html', workflow=None, sales_answer=None, automation=None, generated_response=generated)
 
 
+@app.route('/parse-workflow', methods=['POST'])
+def parse_workflow_route():
+    """Parse a workflow prompt and return structured JSON."""
+    data = request.get_json(silent=True) or request.form
+    prompt = data.get('prompt', '')
+    parsed = parse_workflow(prompt)
+    return jsonify(parsed)
+
+
+@app.route('/generate-automation', methods=['POST'])
+def generate_automation_route():
+    """Generate an automation flow from a plain language prompt."""
+    data = request.get_json(silent=True) or request.form
+    prompt = data.get('prompt', '')
+    flow = generate_automation(prompt).to_dict()
+    return jsonify(flow)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

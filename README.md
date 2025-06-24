@@ -37,9 +37,17 @@ Sales AI for quick tips, another to generate an automation flow from a plain
 language description, and a form for generating a short response in a chosen
 style.
 
-You can also run the lightweight API server via `vision_api.py`. It exposes a
-`POST /generate-response` endpoint accepting JSON with `context` and `style` and
-returns the generated message.
+You can also run the lightweight API server via `vision_api.py` or use the
+Flask app's JSON endpoints directly:
+
+* `POST /generate-response` &ndash; generate a short message in a specified
+  style.
+* `POST /parse-workflow` &ndash; parse a natural language prompt into a
+  structured workflow.
+* `POST /generate-automation` &ndash; build an automation flow from a
+  description.
+
+All endpoints accept JSON payloads and return JSON responses.
 
 ## React component example
 
