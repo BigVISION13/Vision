@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Vision - Workflow Parser</title>
+</head>
+<body>
+  <h1>Vision Workflow Parser</h1>
+  <form method="post">
+    <textarea name="prompt" rows="4" cols="50" placeholder="Enter your workflow prompt here..."></textarea><br>
+    <button type="submit">Parse Workflow</button>
+  </form>
+
+  <h1>Ask the Sales AI</h1>
+  <form method="post">
+    <textarea name="sales_prompt" rows="4" cols="50" placeholder="Ask a question about sales tactics..."></textarea><br>
+    <button type="submit">Ask</button>
+  </form>
+
+  <h1>Generate Automation</h1>
+  <form method="post">
+    <textarea name="automation_prompt" rows="4" cols="50" placeholder="Describe an automation to build..."></textarea><br>
+    <button type="submit">Generate</button>
+  </form>
+
+  <h1>Generate Styled Response</h1>
+  <form method="post" action="/generate-response">
+    <input type="text" name="context" placeholder="Context" />
+    <input type="text" name="style" placeholder="Style" />
+    <button type="submit">Generate Response</button>
+  </form>
+
+  {% if workflow %}
+    <h2>Parsed Workflow</h2>
+    <pre>{{ workflow | tojson(indent=2) }}</pre>
+  {% endif %}
+
+  {% if sales_answer %}
+    <h2>Sales AI Advice</h2>
+    <p>{{ sales_answer }}</p>
+  {% endif %}
+
+  {% if automation %}
+    <h2>Automation Flow</h2>
+    <pre>{{ automation | tojson(indent=2) }}</pre>
+  {% endif %}
+
+  {% if generated_response %}
+    <h2>Generated Response</h2>
+    <p>{{ generated_response }}</p>
+  {% endif %}
+</body>
+</html>
